@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
 
+# git-directory-deploy.sh
+# https://github.com/X1011/git-directory-deploy
 
 # BSD 3-Clause License:
 
-# git-directory-deploy.sj=h
-# https://github.com/X1011/git-directory-deploy
 # Copyright Daniel Smith
-# Modifications by Luke Karrys
 # All rights reserved.
 
 # Redistribution and use in source and binary forms, with or without modification,
