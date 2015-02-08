@@ -39,7 +39,7 @@ set -o errexit #abort if any command fails
 
 # Start modifications
 # --------------------
-while getopts "d:b:u:e:v:s:r:a:" opt; do
+while getopts "d:b:u:e:v:r:a:" opt; do
   declare "opt_$opt=${OPTARG:-0}"
 done
 
@@ -53,7 +53,6 @@ default_email=$opt_e
 
 #Parse arg flags
 verbose=$opt_v
-setup=$opt_s
 allow_empty=$opt_a
 
 #repository to deploy to. must be readable and writable.
@@ -108,17 +107,6 @@ fi
 commit_title=`git log -n 1 --format="%s" HEAD`
 commit_hash=`git log -n 1 --format="%H" HEAD`
 previous_branch=`git rev-parse --abbrev-ref HEAD`
-
-if [ $setup ]; then
-    mkdir -p "$deploy_directory"
-    git --work-tree "$deploy_directory" checkout --orphan $deploy_branch
-    git --work-tree "$deploy_directory" rm -r "*"
-    git --work-tree "$deploy_directory" add --all
-    git --work-tree "$deploy_directory" commit -m "initial publish"$'\n\n'"generated from commit $commit_hash"
-    git push $repo $deploy_branch
-    restore_head
-    exit
-fi
 
 if [ ! -d "$deploy_directory" ]; then
     echo "Deploy directory '$deploy_directory' does not exist. Aborting." >&2

@@ -9,17 +9,16 @@ var minimist = require('minimist');
 
 // Alias all the cli arg names to the names
 // used by getopts in the bash script
-// Also make verbose, setup, allow_empty all booleans
+// Also make verbose, allow_empty all booleans
 var argv = minimist(process.argv.slice(2), {
-    boolean: ['v', 's', 'a'],
+    boolean: ['v', 'a'],
     alias: {
         d: 'directory',
         b: 'branch',
         u: 'username',
         e: 'email',
         v: 'verbose',
-        s: 'setup',
-        r: 'repo',
+        r: 'remote',
         a: 'allow_empty'
     },
     default: {
