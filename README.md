@@ -14,9 +14,8 @@ and it's best explained in that README:
 
 This repo accomplishes a few other things:
 
-1) Easier use in Node land
-2) Named cli args
-3) Publish it to [`npm`](https://www.npmjs.com/) so I can use it as a devDep in projects
+- Named cli args
+- Publish it to [`npm`](https://www.npmjs.com/) so I can use it as a devDep in projects
 
 
 # Install
