@@ -71,7 +71,5 @@ Allow the `--directory` to be empty.
 
 MIT
 
-```
-The script at bin/git-directory-deploy.sh is Copyright [Daniel Smith](https://github.com/X1011/git-directory-deploy).
+The script at `bin/git-directory-deploy.sh` is Copyright [Daniel Smith](https://github.com/X1011/git-directory-deploy).
 See the file for terms.
-```
