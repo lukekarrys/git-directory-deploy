@@ -1,0 +1,33 @@
+{
+  "name": "git-directory-deploy",
+  "description": "Deploy a git directory",
+  "version": "1.0.0",
+  "author": "Luke Karrys",
+  "bin": {
+    "git-directory-deploy": "index.js"
+  },
+  "bugs": {
+    "url": "https://github.com/lukekarrys/git-directory-deploy/issues"
+  },
+  "dependencies": {
+    "minimist": "^1.1.0",
+    "underscore": "^1.7.0"
+  },
+  "homepage": "https://github.com/lukekarrys/git-directory-deploy",
+  "keywords": [
+    "git",
+    "deploy",
+    "github",
+    "pages"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "preferGlobal": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lukekarrys/git-directory-deploy"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
