@@ -17,8 +17,9 @@ git-deploy-directory
 ```
 
 Or for use in via [`npm run-script`](https://docs.npmjs.com/cli/run-script)
+```sh
+npm install git-deploy-directory --save-dev
 ```
-npm install git-deploy-directory --save-dev```
 and then use it in your `package.json` likes this:
 ```js
 "scripts": {
