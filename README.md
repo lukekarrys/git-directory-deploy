@@ -7,8 +7,8 @@ deploy to [GitHub Pages](https://pages.github.com/).
 
 # Install
 
-For global use:
-```
+For global use
+```sh
 npm install -g git-deploy-directory
 
 cd projects/i-want-to-deploy/
@@ -16,8 +16,10 @@ cd projects/i-want-to-deploy/
 git-deploy-directory
 ```
 
-Or for use in via [`npm run-script`](https://docs.npmjs.com/cli/run-script):
-`npm install git-deploy-directory --save-dev` and then use it in your `package.json`
+Or for use in via [`npm run-script`](https://docs.npmjs.com/cli/run-script)
+```
+npm install git-deploy-directory --save-dev```
+and then use it in your `package.json` likes this:
 ```js
 "scripts": {
     "deploy": "git-deploy-directory --directory _dist"
