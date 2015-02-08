@@ -1,5 +1,7 @@
-git-directory-deploy
---------------------
+# git-directory-deploy
+
+[![NPM](https://nodei.co/npm/git-directory-deploy.png)](https://nodei.co/npm/git-directory-deploy/)
+
 
 Deploy a subdirectory from a git repo to a different branch. Useful to
 deploy to [GitHub Pages](https://pages.github.com/).
@@ -7,7 +9,7 @@ deploy to [GitHub Pages](https://pages.github.com/).
 
 # Install
 
-For global use
+**For global use:**
 ```sh
 npm install -g git-deploy-directory
 
@@ -16,7 +18,7 @@ cd projects/i-want-to-deploy/
 git-deploy-directory
 ```
 
-Or for use in via [`npm run-script`](https://docs.npmjs.com/cli/run-script)
+**Or for use in via [`npm run-script`](https://docs.npmjs.com/cli/run-script):**
 ```sh
 npm install git-deploy-directory --save-dev
 ```
@@ -29,7 +31,7 @@ and then use it in your `package.json` likes this:
 
 
 # Usage
-`git-deploy-directory [args]`
+###`git-deploy-directory [args]`
 
 #### `--directory [_site]`
 The subdirectory to deploy.
