@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
+
 # BSD 3-Clause License:
 
-# git-directory-deploy
+# git-directory-deploy.sj=h
 # https://github.com/X1011/git-directory-deploy
 # Copyright Daniel Smith
 # Modifications by Luke Karrys
@@ -32,12 +33,17 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+
 set -o errexit #abort if any command fails
 
+
+# Start modifications
+# --------------------
 while getopts "d:b:u:e:v:s:r:a:" opt; do
   declare "opt_$opt=${OPTARG:-0}"
 done
 
+#set directory and branch
 deploy_directory=$opt_d
 deploy_branch=$opt_b
 
@@ -45,13 +51,16 @@ deploy_branch=$opt_b
 default_username=$opt_u
 default_email=$opt_e
 
-# Parse arg flags
+#Parse arg flags
 verbose=$opt_v
 setup=$opt_s
 allow_empty=$opt_a
 
 #repository to deploy to. must be readable and writable.
 repo=$opt_r
+# --------------------
+# End modifications
+
 
 #echo expanded commands as they are executed (for debugging)
 function enable_expanded_output {
