@@ -67,7 +67,7 @@ and then use it in your `package.json` likes this:
 
 # Usage
 
-###`git-deploy-directory [args]`
+### `git-deploy-directory [args]`
 
 #### `--directory [_site]`
 The subdirectory to deploy. Defaults to `_site/`.
