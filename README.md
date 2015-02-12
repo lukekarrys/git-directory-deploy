@@ -21,6 +21,24 @@ This repo accomplishes a few other things:
 
 # Example
 
+I normally use it like this:
+```sh
+cd project/ # Assumes a git directory with a package.json
+echo _build >> .gitignore
+npm install git-directory-deploy --save-dev
+touch build.js # For however you want to build your static files
+```
+
+Then add these `scripts` to `package.json`:
+```js
+"scripts": {
+  "build": "node build.js", // should write files to _build/
+  "deploy": "npm run build && git-directory-deploy --directory _build/"
+}
+```
+
+Then: `npm run deploy`!
+
 Check out [npm-v0-finder](https://github.com/lukekarrys/npm-v0-finder/blob/1fc7f243378ed40cfa22fe04d2a9925c18989738/package.json#L36-L37) for an example.
 
 
