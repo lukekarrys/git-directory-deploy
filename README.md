@@ -75,8 +75,8 @@ The subdirectory to deploy. Defaults to `_site/`.
 #### `--branch [gh-pages]`
 The branch that will receive the deploy. Defaults to `gh-pages`.
 
-#### `--remote [origin]`
-The remote to push the deploy to. Defaults to `origin`.
+#### `--repo [origin]`
+The repo to push the deploy to. Defaults to `origin`.
 
 #### `--username [git config user.name]`
 The username that will be associated with the deploy commit. This will always be set to the current `user.name` from `git config`, but if that is not set, then it can be set via this flag.
