@@ -38,7 +38,7 @@ set -o errexit #abort if any command fails
 
 # Start modifications
 # --------------------
-while getopts "d:b:u:e:v:r:a:" opt; do
+while getopts "d:b:u:e:v:r:a:m:" opt; do
   declare "opt_$opt=${OPTARG:-0}"
 done
 
@@ -53,6 +53,12 @@ default_email=$opt_e
 #Parse arg flags
 verbose=$opt_v
 allow_empty=$opt_a
+
+# possibly append commit message
+append_message=${opt_m:-""}
+if [ -n "$append_message" ]; then
+    append_message=" $append_message"
+fi
 
 #repository to deploy to. must be readable and writable.
 repo=$opt_r
@@ -137,7 +143,7 @@ case $diff in
     1)
         set_user_id
         git --work-tree "$deploy_directory" commit -m \
-            "publish: $commit_title"$'\n\n'"generated from commit $commit_hash"
+            "publish: $commit_title$append_message"$'\n\n'"generated from commit $commit_hash"
 
         disable_expanded_output
         #--quiet is important here to avoid outputting the repo URL, which may contain a secret token

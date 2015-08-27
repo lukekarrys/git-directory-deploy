@@ -19,7 +19,8 @@ var argv = minimist(process.argv.slice(2), {
         e: 'email',
         v: 'verbose',
         r: ['repo', 'remote'],
-        a: 'allow_empty'
+        a: 'allow_empty',
+        m: 'message'
     },
     default: {
         d: '_site',

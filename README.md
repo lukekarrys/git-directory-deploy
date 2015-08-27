@@ -84,6 +84,14 @@ The username that will be associated with the deploy commit. This will always be
 #### `--email [git config user.email]`
 The email that will be associated with the deploy commit. This will always be set to the current `user.email` from `git config`, but if that is not set, then it can be set via this flag.
 
+#### `--message`
+Append something to the commit message. The message will look like this:
+```sh
+publish: $COMMIT_MESSAGE $MESSAGE
+
+generated from commit $COMMIT_HASH
+```
+
 #### `--verbose`
 Be louder.
 
