@@ -46,28 +46,28 @@ Check out [npm-v0-finder](https://github.com/lukekarrys/npm-v0-finder/blob/1fc7f
 
 **For global use:**
 ```sh
-npm install -g git-deploy-directory
+npm install -g git-directory-deploy
 
 cd projects/i-want-to-deploy/
 
-git-deploy-directory --directory _dist --branch gh-pages
+git-directory-deploy --directory _dist --branch gh-pages
 ```
 
 **Or for use in via [`npm run-script`](https://docs.npmjs.com/cli/run-script):**
 ```sh
-npm install git-deploy-directory --save-dev
+npm install git-directory-deploy --save-dev
 ```
 and then use it in your `package.json` likes this:
 ```js
 "scripts": {
-    "deploy": "git-deploy-directory --directory _dist --branch gh-pages"
+    "deploy": "git-directory-deploy --directory _dist --branch gh-pages"
 }
 ```
 
 
 # Usage
 
-### `git-deploy-directory [args]`
+### `git-directory-deploy [args]`
 
 #### `--directory [_site]`
 The subdirectory to deploy. Defaults to `_site/`.
