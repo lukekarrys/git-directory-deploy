@@ -1,7 +1,7 @@
 {
   "name": "git-directory-deploy",
   "description": "Deploy a git directory to a branch.",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": "Luke Karrys",
   "bin": {
     "git-directory-deploy": "index.js"
