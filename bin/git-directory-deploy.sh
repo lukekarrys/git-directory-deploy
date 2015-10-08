@@ -38,7 +38,7 @@ set -o errexit #abort if any command fails
 
 # Start modifications
 # --------------------
-while getopts "d:b:u:e:v:r:a:m:" opt; do
+while getopts "d:b:u:e:v:r:a:m:i:" opt; do
   declare "opt_$opt=${OPTARG:-0}"
 done
 
@@ -53,6 +53,7 @@ default_email=$opt_e
 #Parse arg flags
 verbose=$opt_v
 allow_empty=$opt_a
+ignore_removal=$opt_i
 
 # possibly append commit message
 append_message=${opt_m:-""}
@@ -133,7 +134,12 @@ git symbolic-ref HEAD refs/heads/$deploy_branch
 #put the previously committed contents of deploy_branch branch into the index
 git --work-tree "$deploy_directory" reset --mixed --quiet
 
-git --work-tree "$deploy_directory" add --all
+if [ $ignore_removal ]; then
+  git --work-tree "$deploy_directory" add . --ignore-removal
+  git --work-tree "$deploy_directory" checkout -- .
+else
+  git --work-tree "$deploy_directory" add --all
+fi
 
 set +o errexit
 diff=$(git --work-tree "$deploy_directory" diff --exit-code --quiet HEAD)$?
