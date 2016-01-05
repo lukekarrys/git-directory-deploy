@@ -148,7 +148,7 @@ case $diff in
     0) echo No changes to files in $deploy_directory. Skipping commit.;;
     1)
         set_user_id
-        git --work-tree "$deploy_directory" commit -m \
+        git --work-tree "$deploy_directory" commit -nm \
             "publish: $commit_title$append_message"$'\n\n'"generated from commit $commit_hash"
 
         disable_expanded_output
