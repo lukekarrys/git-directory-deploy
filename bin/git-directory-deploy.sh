@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -x
 # git-directory-deploy.sh
 # https://github.com/X1011/git-directory-deploy
 
