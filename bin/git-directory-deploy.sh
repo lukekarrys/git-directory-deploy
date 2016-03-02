@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # git-directory-deploy.sh
 # https://github.com/X1011/git-directory-deploy
 
@@ -101,7 +100,7 @@ function restore_head {
     else
         git symbolic-ref HEAD refs/heads/$previous_branch
     fi
-    
+
     git reset --mixed
 }
 
@@ -114,6 +113,51 @@ commit_title=`git log -n 1 --format="%s" HEAD`
 commit_hash=`git log -n 1 --format="%H" HEAD`
 previous_branch=`git rev-parse --abbrev-ref HEAD`
 
+initial_deploy() {
+	git --work-tree "$deploy_directory" checkout --orphan $deploy_branch
+	git --work-tree "$deploy_directory" add --all
+	commit+push
+}
+
+incremental_deploy() {
+  #make deploy_branch the current branch
+  git symbolic-ref HEAD refs/heads/$deploy_branch
+
+  #put the previously committed contents of deploy_branch branch into the index
+  git --work-tree "$deploy_directory" reset --mixed --quiet
+
+  if [ $ignore_removal ]; then
+    git --work-tree "$deploy_directory" add . --ignore-removal
+    git --work-tree "$deploy_directory" checkout -- .
+  else
+    git --work-tree "$deploy_directory" add --all
+  fi
+
+  set +o errexit
+  diff=$(git --work-tree "$deploy_directory" diff --exit-code --quiet HEAD)$?
+  set -o errexit
+  case $diff in
+      0) echo No changes to files in $deploy_directory. Skipping commit.;;
+      1) commit+push;;
+      *)
+          echo git diff exited with code $diff. Aborting. Staying on branch $deploy_branch so you can debug. To switch back to master, use: git symbolic-ref HEAD refs/heads/master && git reset --mixed >&2
+          exit $diff
+          ;;
+  esac
+}
+
+commit+push() {
+  set_user_id
+  git --work-tree "$deploy_directory" commit -nm \
+      "publish: $commit_title$append_message"$'\n\n'"generated from commit $commit_hash"
+
+  disable_expanded_output
+  #--quiet is important here to avoid outputting the repo URL, which may contain a secret token
+  git push --quiet $repo $deploy_branch
+  enable_expanded_output
+}
+
+
 if [ ! -d "$deploy_directory" ]; then
     echo "Deploy directory '$deploy_directory' does not exist. Aborting." >&2
     exit 1
@@ -124,42 +168,16 @@ if [[ -z `ls -A "$deploy_directory" 2> /dev/null` && -z $allow_empty ]]; then
     exit 1
 fi
 
-disable_expanded_output
-git fetch --force $repo $deploy_branch:$deploy_branch
-enable_expanded_output
-
-#make deploy_branch the current branch
-git symbolic-ref HEAD refs/heads/$deploy_branch
-
-#put the previously committed contents of deploy_branch branch into the index
-git --work-tree "$deploy_directory" reset --mixed --quiet
-
-if [ $ignore_removal ]; then
-  git --work-tree "$deploy_directory" add . --ignore-removal
-  git --work-tree "$deploy_directory" checkout -- .
-else
-  git --work-tree "$deploy_directory" add --all
+if git ls-remote --exit-code $repo "refs/heads/$deploy_branch" ; then
+  # deploy_branch exists in $repo; make sure we have the latest version
+  disable_expanded_output
+  git fetch --force $repo $deploy_branch:$deploy_branch
+  enable_expanded_output
 fi
 
-set +o errexit
-diff=$(git --work-tree "$deploy_directory" diff --exit-code --quiet HEAD)$?
-set -o errexit
-case $diff in
-    0) echo No changes to files in $deploy_directory. Skipping commit.;;
-    1)
-        set_user_id
-        git --work-tree "$deploy_directory" commit -nm \
-            "publish: $commit_title$append_message"$'\n\n'"generated from commit $commit_hash"
-
-        disable_expanded_output
-        #--quiet is important here to avoid outputting the repo URL, which may contain a secret token
-        git push --quiet $repo $deploy_branch
-        enable_expanded_output
-        ;;
-    *)
-        echo git diff exited with code $diff. Aborting. Staying on branch $deploy_branch so you can debug. To switch back to master, use: git symbolic-ref HEAD refs/heads/master && git reset --mixed >&2
-        exit $diff
-        ;;
-esac
+if git show-ref --verify --quiet "refs/heads/$deploy_branch"
+  then incremental_deploy
+  else initial_deploy
+fi
 
 restore_head
