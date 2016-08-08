@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "git-validate": "^2.1.4",
-    "standard": "^7.1.2",
+    "standard": "^8.0.0-beta.3",
     "tap-spec": "^4.1.1",
     "tape": "^4.6.0"
   },
