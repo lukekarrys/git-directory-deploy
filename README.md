@@ -1,5 +1,6 @@
 # git-directory-deploy
 
+[![Build Status](https://img.shields.io/travis/lukekarrys/git-directory-deploy/master.svg)](https://travis-ci.org/lukekarrys/git-directory-deploy)
 [![NPM](https://nodei.co/npm/git-directory-deploy.png)](https://nodei.co/npm/git-directory-deploy/)
 
 Deploy a subdirectory from a git repo to a different branch. Useful to
@@ -97,6 +98,9 @@ Be louder.
 
 #### `--allow_empty`
 Allow the `--directory` to be empty.
+
+#### `--ignore_removal`
+Deploy will not override files that are in the remote repo but not in the deploy directory.
 
 
 ### LICENSE
