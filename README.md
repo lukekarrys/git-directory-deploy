@@ -1,5 +1,7 @@
 # git-directory-deploy
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/lukekarrys/git-directory-deploy.svg)](https://greenkeeper.io/)
+
 [![Build Status](https://img.shields.io/travis/lukekarrys/git-directory-deploy/master.svg)](https://travis-ci.org/lukekarrys/git-directory-deploy)
 [![NPM](https://nodei.co/npm/git-directory-deploy.png)](https://nodei.co/npm/git-directory-deploy/)
 
