@@ -1,12 +1,10 @@
 # git-directory-deploy
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/lukekarrys/git-directory-deploy.svg)](https://greenkeeper.io/)
+Deploy a subdirectory from a git repo to a different branch. Useful to deploy to [GitHub Pages](https://pages.github.com/).
 
 [![Build Status](https://img.shields.io/travis/lukekarrys/git-directory-deploy/master.svg)](https://travis-ci.org/lukekarrys/git-directory-deploy)
 [![NPM](https://nodei.co/npm/git-directory-deploy.png)](https://nodei.co/npm/git-directory-deploy/)
-
-Deploy a subdirectory from a git repo to a different branch. Useful to
-deploy to [GitHub Pages](https://pages.github.com/).
+[![Greenkeeper badge](https://badges.greenkeeper.io/lukekarrys/git-directory-deploy.svg)](https://greenkeeper.io/)
 
 
 # Why
